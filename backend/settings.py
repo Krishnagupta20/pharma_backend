@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ SECRET_KEY = "django-insecure-m5$%mi1_5rpqhxsbq^3cchcxw#59952+7%#9-7rifgfebc50-t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -99,14 +101,15 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pharma',
-        'USER': 'postgres',
-        'PASSWORD': 'Iitkrishna@1',
-        'HOST': 'localhost',
-        'PORT': 5432,
-    }
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'pharma',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Iitkrishna@1',
+    #     'HOST': 'localhost',
+    #     'PORT': 5432,
+    # }
 }
 
 
@@ -147,3 +150,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 GDAL_LIBRARY_PATH = "/opt/homebrew/Cellar/gdal/3.8.5/lib/libgdal.34.3.8.5.dylib"
 GEOS_LIBRARY_PATH= "/opt/homebrew/Cellar/geos/3.12.1/lib/libgeos_c.1.18.1.dylib"
+
+# Make sure this is set in your Render env variables too
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://your-react-app.netlify.app",  # Update this after deploying React
+# ]
