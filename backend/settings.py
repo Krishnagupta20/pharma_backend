@@ -76,7 +76,7 @@ ROOT_URLCONF = "backend.urls"
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://localhost:3000", "https://pharmafront.netlify.app/")
+CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://localhost:3000", "https://pharmafront.netlify.app")
 
 TEMPLATES = [
     {
